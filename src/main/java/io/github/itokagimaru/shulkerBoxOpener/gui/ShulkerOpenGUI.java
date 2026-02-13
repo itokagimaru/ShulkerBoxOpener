@@ -26,7 +26,6 @@ public class ShulkerOpenGUI extends BaseGuiHolder {
         if (shulkerBoxItem.getItemMeta() instanceof BlockStateMeta meta) {
             if (meta.getBlockState() instanceof ShulkerBox shulkerBox) {
                 Inventory shulkerInv = shulkerBox.getInventory();
-
                 // 中身を取得
                 ItemStack[] contents = shulkerInv.getContents().clone();
                 inv.setContents(contents);
@@ -46,17 +45,21 @@ public class ShulkerOpenGUI extends BaseGuiHolder {
     public void onClose(Player player) {
         if (closeFlag) {
             closeFlag = false;
+            ItemData.isOpen.set(shulkerBoxItem, (byte) 0);
+            ItemMeta meta = shulkerBoxItem.getItemMeta();
+            BlockStateMeta blockStateMeta = (BlockStateMeta) meta;
+            ShulkerBox shulkerBoxMeta = (ShulkerBox) blockStateMeta.getBlockState();
+            shulkerBoxMeta.getInventory().setContents(inv.getContents().clone());
+            blockStateMeta.setBlockState(shulkerBoxMeta);
+            shulkerBoxItem.setItemMeta(blockStateMeta);
+
             Bukkit.getScheduler().runTask(ShulkerBoxOpener.getInstance(), () -> {
-                ItemData.isOpen.set(shulkerBoxItem, (byte) 0);
-                ItemMeta meta = shulkerBoxItem.getItemMeta();
-                BlockStateMeta blockStateMeta = (BlockStateMeta) meta;
-                ShulkerBox shulkerBoxMeta = (ShulkerBox) blockStateMeta.getBlockState();
-                shulkerBoxMeta.getInventory().setContents(inv.getContents().clone());
-                blockStateMeta.setBlockState(shulkerBoxMeta);
-                shulkerBoxItem.setItemMeta(blockStateMeta);
+                player.give(shulkerBoxItem);
+                player.updateInventory();
                 if (beforeInv.getType() != InventoryType.CRAFTING) {
                     player.openInventory(beforeInv);
                 }
+
             });
         }
     }

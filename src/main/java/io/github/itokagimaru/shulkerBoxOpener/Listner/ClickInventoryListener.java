@@ -30,7 +30,17 @@ public class ClickInventoryListener implements Listener {
             if (clicked == null || clicked.getType() == Material.AIR) return;
             baseGuiHolder.onClick(event);
         } else if (type == InventoryType.PLAYER || type == InventoryType.CRAFTING || type == InventoryType.CHEST || type == InventoryType.BARREL) {
-            openShulkerBox(event);
+            ItemStack clicked = event.getCurrentItem();
+            Player player = (Player) event.getWhoClicked();
+            if (clicked == null || clicked.getType() == Material.AIR) return;
+            ItemStack clickedClone = clicked.clone();
+            if (!(event.isRightClick() && event.isShiftClick())) return;
+            if (clicked.getType() != Material.SHULKER_BOX) return;
+            event.setCancelled(true);
+            clicked.setAmount(0);
+            ShulkerOpenGUI shulkerOpenGUI = new ShulkerOpenGUI(inv, clickedClone);
+            if (shulkerOpenGUI.setup()) player.openInventory(shulkerOpenGUI.getInventory());
+            else player.sendMessage(Component.text("shulkerboxの読み込みに失敗しました").color(NamedTextColor.RED));
         }
     }
 
@@ -39,11 +49,12 @@ public class ClickInventoryListener implements Listener {
         ItemStack clicked = event.getCurrentItem();
         Player player = (Player) event.getWhoClicked();
         if (clicked == null || clicked.getType() == Material.AIR) return;
+        ItemStack clickedClone = clicked.clone();
         if (!(event.isRightClick() && event.isShiftClick())) return;
         if (clicked.getType() != Material.SHULKER_BOX) return;
         event.setCancelled(true);
-        ItemData.isOpen.set(clicked, (byte) 1);
-        ShulkerOpenGUI shulkerOpenGUI = new ShulkerOpenGUI(inv, clicked);
+        clicked.setAmount(0);
+        ShulkerOpenGUI shulkerOpenGUI = new ShulkerOpenGUI(inv, clickedClone);
         if (shulkerOpenGUI.setup()) player.openInventory(shulkerOpenGUI.getInventory());
         else player.sendMessage(Component.text("shulkerboxの読み込みに失敗しました").color(NamedTextColor.RED));
     }

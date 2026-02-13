@@ -2,6 +2,7 @@ package io.github.itokagimaru.shulkerBoxOpener;
 
 import io.github.itokagimaru.shulkerBoxOpener.Listner.ClickInventoryListener;
 import io.github.itokagimaru.shulkerBoxOpener.Listner.CloseInventoryListeners;
+import io.github.itokagimaru.shulkerBoxOpener.Listner.PickupListener;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,7 +16,9 @@ public final class ShulkerBoxOpener extends JavaPlugin {
 
         registerListeners(
             new ClickInventoryListener(),
+            new PickupListener(),
             new CloseInventoryListeners()
+
         );
     }
 
