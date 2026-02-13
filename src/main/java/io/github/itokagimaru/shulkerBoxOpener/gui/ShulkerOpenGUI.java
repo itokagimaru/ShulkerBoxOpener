@@ -57,7 +57,6 @@ public class ShulkerOpenGUI extends BaseGuiHolder {
                 if (beforeInv.getType() != InventoryType.CRAFTING) {
                     player.openInventory(beforeInv);
                 }
-                player.updateInventory();
             });
         }
     }
