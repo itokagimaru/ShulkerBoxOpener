@@ -1,1 +1,4 @@
-# ShulkerBoxOpener
+```
+プレイヤーのインベントリもしくはチェスト,樽の中でshulkerboxをShift+右クリックでshulkerboxを開くことができます
+開いたインベントリをいじることでこのままクリックしたshulkerboxの中身をいじれます
+```
