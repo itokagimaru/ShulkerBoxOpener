@@ -1,0 +1,4 @@
+name: ShulkerBoxOpener
+version: '1.0-SNAPSHOT'
+main: io.github.itokagimaru.shulkerBoxOpener.ShulkerBoxOpener
+api-version: '1.21'
