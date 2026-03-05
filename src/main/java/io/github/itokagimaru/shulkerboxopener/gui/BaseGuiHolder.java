@@ -1,4 +1,4 @@
-package io.github.itokagimaru.shulkerBoxOpener.gui;
+package io.github.itokagimaru.shulkerboxopener.gui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

@@ -1,14 +1,13 @@
-package io.github.itokagimaru.shulkerBoxOpener.data;
+package io.github.itokagimaru.shulkerboxopener.data;
 
 import io.papermc.paper.persistence.PersistentDataContainerView;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 /// PDCのラッパークラス
 @NullMarked

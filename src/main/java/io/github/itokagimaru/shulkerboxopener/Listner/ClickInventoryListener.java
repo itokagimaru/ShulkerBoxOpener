@@ -1,9 +1,7 @@
-package io.github.itokagimaru.shulkerBoxOpener.Listner;
+package io.github.itokagimaru.shulkerboxopener.Listner;
 
-import io.github.itokagimaru.shulkerBoxOpener.ShulkerBoxOpener;
-import io.github.itokagimaru.shulkerBoxOpener.data.ItemData;
-import io.github.itokagimaru.shulkerBoxOpener.gui.BaseGuiHolder;
-import io.github.itokagimaru.shulkerBoxOpener.gui.ShulkerOpenGUI;
+import io.github.itokagimaru.shulkerboxopener.gui.BaseGuiHolder;
+import io.github.itokagimaru.shulkerboxopener.gui.ShulkerOpenGUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
