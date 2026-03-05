@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
@@ -42,18 +43,15 @@ public class ClickInventoryListener implements Listener {
         }
     }
 
-    private void openShulkerBox(InventoryClickEvent event) {
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent event) {
+        // is player
+        if (!(event.getPlayer() instanceof Player player)) return;
+
+        // get inventory and check
         Inventory inv = event.getInventory();
-        ItemStack clicked = event.getCurrentItem();
-        Player player = (Player) event.getWhoClicked();
-        if (clicked == null || clicked.getType() == Material.AIR) return;
-        ItemStack clickedClone = clicked.clone();
-        if (!(event.isRightClick() && event.isShiftClick())) return;
-        if (clicked.getType() != Material.SHULKER_BOX) return;
-        event.setCancelled(true);
-        clicked.setAmount(0);
-        ShulkerOpenGUI shulkerOpenGUI = new ShulkerOpenGUI(inv, clickedClone);
-        if (shulkerOpenGUI.setup()) player.openInventory(shulkerOpenGUI.getInventory());
-        else player.sendMessage(Component.text("shulkerboxの読み込みに失敗しました").color(NamedTextColor.RED));
+        if (!(inv.getHolder() instanceof BaseGuiHolder guiHolder)) return;
+        // call onClose
+        guiHolder.onClose(player);
     }
 }

@@ -11,9 +11,7 @@ public class PickupListener implements Listener {
     @EventHandler
     public static void PlayerPickupListener(EntityPickupItemEvent event){
         if(event.getEntity() instanceof Player player){
-            Bukkit.getScheduler().runTask(ShulkerBoxOpener.getInstance(), ()->{
-                player.updateInventory();
-            });
+            Bukkit.getScheduler().runTask(ShulkerBoxOpener.getInstance(), player::updateInventory);
         }
     }
 }
