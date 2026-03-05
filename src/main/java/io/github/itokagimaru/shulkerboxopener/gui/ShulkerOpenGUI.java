@@ -1,7 +1,7 @@
-package io.github.itokagimaru.shulkerBoxOpener.gui;
+package io.github.itokagimaru.shulkerboxopener.gui;
 
-import io.github.itokagimaru.shulkerBoxOpener.ShulkerBoxOpener;
-import io.github.itokagimaru.shulkerBoxOpener.data.ItemData;
+import io.github.itokagimaru.shulkerboxopener.ShulkerBoxOpener;
+import io.github.itokagimaru.shulkerboxopener.data.ItemData;
 import org.bukkit.Bukkit;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
@@ -38,14 +38,14 @@ public class ShulkerOpenGUI extends BaseGuiHolder {
     @Override
     public void onClick(InventoryClickEvent event) {
         ItemStack clicked = event.getCurrentItem().clone();
-        if (ItemData.isOpen.get(clicked) == (byte) 1) event.setCancelled(true);
+        if (ItemData.IS_OPEN.get(clicked)) event.setCancelled(true);
     }
 
     @Override
     public void onClose(Player player) {
         if (closeFlag) {
             closeFlag = false;
-            ItemData.isOpen.set(shulkerBoxItem, (byte) 0);
+            ItemData.IS_OPEN.set(shulkerBoxItem, false);
             ItemMeta meta = shulkerBoxItem.getItemMeta();
             BlockStateMeta blockStateMeta = (BlockStateMeta) meta;
             ShulkerBox shulkerBoxMeta = (ShulkerBox) blockStateMeta.getBlockState();
@@ -59,7 +59,6 @@ public class ShulkerOpenGUI extends BaseGuiHolder {
                 if (beforeInv.getType() != InventoryType.CRAFTING) {
                     player.openInventory(beforeInv);
                 }
-
             });
         }
     }

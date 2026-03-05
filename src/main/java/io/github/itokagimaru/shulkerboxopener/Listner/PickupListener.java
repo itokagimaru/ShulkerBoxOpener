@@ -1,6 +1,6 @@
-package io.github.itokagimaru.shulkerBoxOpener.Listner;
+package io.github.itokagimaru.shulkerboxopener.Listner;
 
-import io.github.itokagimaru.shulkerBoxOpener.ShulkerBoxOpener;
+import io.github.itokagimaru.shulkerboxopener.ShulkerBoxOpener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,9 +11,7 @@ public class PickupListener implements Listener {
     @EventHandler
     public static void PlayerPickupListener(EntityPickupItemEvent event){
         if(event.getEntity() instanceof Player player){
-            Bukkit.getScheduler().runTask(ShulkerBoxOpener.getInstance(), ()->{
-                player.updateInventory();
-            });
+            Bukkit.getScheduler().runTask(ShulkerBoxOpener.getInstance(), player::updateInventory);
         }
     }
 }
