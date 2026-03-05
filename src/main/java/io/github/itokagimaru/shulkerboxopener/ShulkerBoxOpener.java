@@ -18,9 +18,10 @@ public final class ShulkerBoxOpener extends JavaPlugin {
     public static ShulkerBoxOpener instance;
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        // plugin startup logic
         instance = this;
 
+        // register listeners
         registerListeners(
             new ClickInventoryListener(),
             new PickupListener()
@@ -30,6 +31,7 @@ public final class ShulkerBoxOpener extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        instance = null; // To prevent from using by other plugins after disable
     }
 
     public static ShulkerBoxOpener getInstance() {
