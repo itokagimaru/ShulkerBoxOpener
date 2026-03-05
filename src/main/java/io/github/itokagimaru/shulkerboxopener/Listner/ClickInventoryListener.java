@@ -51,11 +51,9 @@ public class ClickInventoryListener implements Listener {
         }
     }
 
-    /**
-     * check if the player can open shulker box GUI
-     * @param event target inventory click event
-     * @return whether the player can open shulker box GUI or not
-     */
+    /// check if the player can open shulker box GUI
+    /// @param event target inventory click event
+    /// @return whether the player can open shulker box GUI or not
     protected static boolean shouldOpenShulkerBoxGUI(InventoryClickEvent event) {
         ItemStack clicked = event.getCurrentItem();
         InventoryType type = event.getView().getTopInventory().getType();
@@ -66,13 +64,11 @@ public class ClickInventoryListener implements Listener {
                 && SUPPORTED_TYPES.contains(type);
     }
 
-    /**
-     * open shulker box GUI
-     * @param player target player
-     * @param beforeInv current inventory
-     * @param shulkerBoxItem clicked shulker box item
-     * @return open success or not
-     */
+    /// open shulker box GUI
+    /// @param player target player
+    /// @param beforeInv current inventory
+    /// @param shulkerBoxItem clicked shulker box item
+    /// @return open success or not
     protected static boolean openShulkerBoxGUI(Player player, Inventory beforeInv, ItemStack shulkerBoxItem) {
         ShulkerOpenGUI shulkerOpenGUI = new ShulkerOpenGUI(beforeInv, shulkerBoxItem);
         boolean setupResult = shulkerOpenGUI.setup();
